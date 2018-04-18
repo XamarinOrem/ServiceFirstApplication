@@ -7,7 +7,7 @@ namespace ServiceFirstApplication.Models
 {
     public class ServiceFirstCountries
     {
-        public virtual long Id1gg { get; set; }
+        public virtual long Id { get; set; }
         public virtual string Name { get; set; }
     }
 }
