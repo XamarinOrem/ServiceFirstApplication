@@ -1,0 +1,166 @@
+﻿@using ServiceFirstApplication.Models
+@model ServiceFirstCompanyManager
+@{
+    ViewBag.Title = ViewBag.TitleText;
+}
+
+<section class="addcompany_main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-add-company">
+                    <h3 class="a_heading">@ViewBag.TitleText</h3>
+                    @*<form>*@
+                    @using (Html.BeginForm("AddCompanyManager", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        if (ViewBag.Message != null)
+                        {
+                            <div class="alert alert-success">
+                                <strong>@ViewBag.Message</strong>
+                            </div>
+                        }
+
+                        <input type="hidden" value="@ViewBag.ManagerID" name="ServiceFirstCompanyManagerID" id="ServiceFirstCompanyManagerID" />
+
+                        @*@Html.HiddenFor(x => x.ServiceFirstCompanyManagerLogoFile)
+                        @Html.HiddenFor(x => x.ServiceFirstCompanyManagerIsActive)*@
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="">Name</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstCompanyManagerName,
+new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="">UserName</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstCompanyManagerUserName,
+new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerUserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="">Password</label>
+                                @if (Model != null)
+                                {
+                                    if (Model.ServiceFirstCompanyManagerPassword != null)
+                                    {
+                                        @Html.PasswordFor(x => x.ServiceFirstCompanyManagerPassword,
+         new { @class = "form-control", @id = "password", @value = Model.ServiceFirstCompanyManagerPassword })
+                                    }
+                                }
+                                else
+                                {
+                                    @Html.PasswordFor(x => x.ServiceFirstCompanyManagerPassword,
+         new { @class = "form-control", @id = "password" })
+                                }
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerPassword, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="">Confirm Password</label>
+                                @if (Model != null)
+                                {
+                                    if (Model.ServiceFirstCompanyManagerPassword != null)
+                                    {
+                                        @Html.PasswordFor(x => x.ServiceFirstCompanyManagerConfirmPassword,
+     new { @class = "form-control", @id = "confirmpassword", @value = Model.ServiceFirstCompanyManagerPassword })
+                                    }
+                                }
+                                else
+                                {
+                                    @Html.PasswordFor(x => x.ServiceFirstCompanyManagerConfirmPassword,
+new { @class = "form-control", @id = "confirmpassword" })
+                                }
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Address 1</label>
+                                @Html.TextAreaFor(x => x.ServiceFirstCompanyManagerAddress,
+new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerAddress, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress2">Address 2</label>
+                                @Html.TextAreaFor(x => x.ServiceFirstCompanyManagerAddressII,
+new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerAddressII, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Postal No.</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstCompanyManagerPostalNumber,
+new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerPostalNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="">Postal Place</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstCompanyManagerPostalPlace,
+new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerPostalPlace, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="">Country</label>
+                                @Html.DropDownListFor(x => x.ServiceFirstCompanyManagerCountry, ViewBag.CountryList as SelectList, "Select Country", new { @class = "form-control", id = "Id" })
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for=""> Contact Email</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstCompanyManagerContactEmail,
+new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerContactEmail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="">Contact Phone No.</label>
+
+                                @Html.TextBoxFor(x => x.ServiceFirstCompanyManagerContactPhone,
+new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerContactPhone, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="">Profile Photo</label>
+                                <input type="file" name="file" id="file" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="">Company</label>
+                                @Html.DropDownListFor(x => x.ServiceFirstCompanyManagerCompanyID, ViewBag.CompanyList as SelectList, "Select Company", new { @class = "form-control", id = "ServiceFirstCompanyID" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyManagerCompanyID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-6 col-md-6 text-right">
+                                <button type="button" class="btn btn-cancel" id="btnCancel">Cancel</button>
+
+                            </div>
+                            <div class="form-group col-6  col-md-6 text-left">
+                                <button id="btn-submit" type="submit" class="btn btn-submit">Submit</button>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnCancel').click(function () {
+                window.location.href = '@Url.Action("CompanyManagerList")';
+            });
+        });
+    </script>
+}

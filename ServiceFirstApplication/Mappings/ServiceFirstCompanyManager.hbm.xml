@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="ServiceFirstApplication" namespace="ServiceFirstApplication.Models">
+  <class name="ServiceFirstCompanyManager" table="ServiceFirstCompanyManager" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ServiceFirstCompanyManagerID" column="ServiceFirstCompanyManagerID" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ServiceFirstCompanyManagerName"  />
+    <property name="ServiceFirstCompanyManagerCreatedDate" />
+    <property name="ServiceFirstCompanyManagerAddress" />
+    <property name="ServiceFirstCompanyManagerAddressII"/>
+    <property name="ServiceFirstCompanyManagerPostalNumber"/>
+    <property name="ServiceFirstCompanyManagerPostalPlace"/>
+    <property name="ServiceFirstCompanyManagerCountry"/>
+    <property name="ServiceFirstCompanyManagerContactEmail"/>
+    <property name="ServiceFirstCompanyManagerContactPhone"/>
+    <property name="ServiceFirstCompanyManagerCompanyID"/>
+    <property name="ServiceFirstCompanyManagerLogoFile"/>
+    <property name="ServiceFirstCompanyManagerIsActive"/>
+    <property name="ServiceFirstCompanyManagerUserName"/>
+    <property name="ServiceFirstCompanyManagerPassword"/>
+    <property name="ServiceFirstCompanyManagerPasswordSalt"/>
+  </class>
+</hibernate-mapping>

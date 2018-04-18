@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="ServiceFirstApplication" namespace="ServiceFirstApplication.Models">
+  <class name="ServiceFirstCompanies" table="ServiceFirstCompanies" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ServiceFirstCompanyID" column="ServiceFirstCompanyID" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ServiceFirstCompanyName"  />
+    <property name="ServiceFirstCompanyCreatedDate" />
+    <property name="ServiceFirstCompanyOrganisationNumber" />
+    <property name="ServiceFirstCompanyAddress"/>
+    <property name="ServiceFirstCompanyAddressII"/>
+    <property name="ServiceFirstCompanyPostalNumber"/>
+    <property name="ServiceFirstCompanyPostalPlace"/>
+    <property name="ServiceFirstCompanyCountry"/>
+    <property name="ServiceFirstCompanyContactEmail"/>
+    <property name="ServiceFirstCompanyContactPhone"/>
+    <property name="ServiceFirstCompanyLogoFile"/>
+    <property name="ServiceFirstCompanyNoOfProjects"/>
+    <property name="ServiceFirstCompanyNoOfTickets"/>
+    <property name="ServiceFirstCompanyNoOfCustomers"/>
+    <property name="ServiceFirstCompanyIsActive"/>
+  </class>
+</hibernate-mapping>
