@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="ServiceFirstApplication" namespace="ServiceFirstApplication.Models">
+  <class name="ServiceFirstTickets" table="ServiceFirstTickets" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ServiceFirstTicketID" column="ServiceFirstTicketID" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ServiceFirstCompanyID"  />
+    <property name="ServiceFirstCompanyCustomerID" />
+    <property name="ServiceFirstCompanyCustomersProjectID" />
+    <property name="SeviceFirstTicketName" />
+    <property name="ServiceFirstTicetCreatedDate" />
+    <property name="ServiceFirstTicketLastChanged" />
+    <property name="ServiceFirstTicketReporter" />
+    <property name="ServiceFirstTicketType" />
+    <property name="ServiceFirstTicketPriority" />
+    <property name="ServiceFirstTicketStatus" />
+    <property name="ServiceFirstTicketResolution" />
+    <property name="ServiceFirstTicketDescription" />
+    <property name="ServiceFirstTicketAssigneeID" />
+  </class>
+</hibernate-mapping>

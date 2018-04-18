@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="ServiceFirstApplication" namespace="ServiceFirstApplication.Models">
+  <class name="ServiceFirstTicketStatus" table="ServiceFirstTicketStatus" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ServiceFirstTicketStatusID" column="ServiceFirstTicketStatusID" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ServiceFirstCompanyID"  />
+    <property name="ServiceFirstTicketStatusIcon" />
+    <property name="ServiceFirstTicketStatusName" />
+    <property name="ServiceFirstTicketStatusCreatedDate" />
+    <property name="ServiceFirstTicketStatusIsActive" />
+  </class>
+</hibernate-mapping>

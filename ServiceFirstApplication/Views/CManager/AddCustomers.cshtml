@@ -1,0 +1,140 @@
+﻿@model ServiceFirstApplication.Models.ServiceFirstCustomers
+
+@{
+    ViewBag.Title = "AddCustomers";
+    Layout = "~/Views/Shared/_LayoutCManager.cshtml";
+}
+
+<div class="side-body cstm-side-body">
+    <div class="side-body-after">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-add-company">
+    <h3 class="a_heading">@ViewBag.TitleText </h3>
+
+    @using (Html.BeginForm("AddCustomers", "CManager", FormMethod.Post))
+    {
+        if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success">
+                <strong>@ViewBag.Message</strong>
+            </div>
+        }
+        <input type="hidden" value="@ViewBag.CustomerID" name="ServiceFirstCustomerID" id="ServiceFirstCustomerID" />
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Customer No.</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstCustomerNumber,
+new { @class = "form-control-file" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCustomerNumber, "", new { @class = "text-danger" })
+
+                            </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputFile">Name</label>
+                                        @Html.TextBoxFor(x => x.ServiceFirstCustomerName,
+new { @class = "form-control-file" })
+                                        @Html.ValidationMessageFor(x => x.ServiceFirstCustomerName, "", new { @class = "text-danger" })
+
+                                    </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="exampleInputFile">Organization No.</label>
+                                    @Html.TextBoxFor(x => x.ServiceFirstCustomerOrganisationNumber,
+new { @class = "form-control-file" })
+                                    @Html.ValidationMessageFor(x => x.ServiceFirstCustomerOrganisationNumber, "", new { @class = "text-danger" })
+
+                                </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputFile">Address</label>
+                                        @Html.TextBoxFor(x => x.ServiceFirstCustomerAddress,
+new { @class = "form-control-file" })
+                                        @Html.ValidationMessageFor(x => x.ServiceFirstCustomerAddress, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputFile">Address 1</label>
+                                        @Html.TextBoxFor(x => x.ServiceFirstCustomerAddressII,
+new { @class = "form-control-file" })
+                                        @Html.ValidationMessageFor(x => x.ServiceFirstCustomerAddressII, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputFile">Postal No.</label>
+                                        @Html.TextBoxFor(x => x.ServiceFirstCustomerPostalNumber,
+new { @class = "form-control-file" })
+                                        @Html.ValidationMessageFor(x => x.ServiceFirstCustomerPostalNumber, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="exampleInputFile">Postal Place</label>
+                                            @Html.TextBoxFor(x => x.ServiceFirstCustomerPostalPlace,
+new { @class = "form-control-file" })
+                                            @Html.ValidationMessageFor(x => x.ServiceFirstCustomerPostalPlace, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputFile">Contact Email</label>
+                                        @Html.TextBoxFor(x => x.ServiceFirstCustomerContactEmail,
+new { @class = "form-control-file" })
+                                        @Html.ValidationMessageFor(x => x.ServiceFirstCustomerContactEmail, "", new { @class = "text-danger" })
+                                    </div>
+
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputFile">Contact Phone</label>
+                                                @Html.TextBoxFor(x => x.ServiceFirstCustomerContactPhone,
+new { @class = "form-control-file" })
+                                                @Html.ValidationMessageFor(x => x.ServiceFirstCustomerContactPhone, "", new { @class = "text-danger" })
+                                            </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputFile">Country</label>
+                                        @Html.DropDownListFor(x => x.ServiceFirstCustomerCountry, ViewBag.CountryList as SelectList, "Select Country", new { @class = "form-control-file", id = "Id" })
+                                        @Html.ValidationMessageFor(x => x.ServiceFirstCustomerCountry, "", new { @class = "text-danger" })
+                                    </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="exampleInputFile">Contact Person</label>
+                                                    @Html.TextBoxFor(x => x.ServiceFirstCustomerContactPerson,
+new { @class = "form-control-file" })
+                                                    @Html.ValidationMessageFor(x => x.ServiceFirstCustomerContactPerson, "", new { @class = "text-danger" })
+                                                </div>
+
+                                            </div>
+                                <div class="can_sub">
+                                    <button type="button" class="btn btn-primary" id="btnCancel">Cancel</button>
+                                    <button type="submit" class="btn btn-primary sub">Submit</button>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnCancel').click(function () {
+                window.location.href = '@Url.Action("CustomersList")';
+            });
+        });
+    </script>
+}

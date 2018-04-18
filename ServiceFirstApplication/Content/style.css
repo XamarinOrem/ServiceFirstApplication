@@ -1,0 +1,221 @@
+body {
+    font-family: 'Roboto', sans-serif;
+	color: #394750;
+	background: #ecf0f5;
+}
+
+.login_bg {
+    background-color: #070707;
+	background-image: url(../img/body_bg.png);
+	background-size: 250px;
+}
+.adminlogin_bg {
+    background: #000;
+}
+.form-signin {
+    max-width: 400px;
+    padding: 35px;
+    margin: 0 auto;
+    border-radius: 8px;
+	background: #fff;
+}
+.form-signin1 {
+	margin: 50px 0;
+}
+.form-signin .form-control {
+    padding: 12px 10px;
+    margin: 20px 0;
+    height: auto;
+    color: #111;
+    font-size: 16px;
+}
+.form-signin1 img {
+	padding: 30px 10px;
+	margin: 0 auto;
+}
+.btn.login {
+    background: #00b4ff;
+    padding: 10px 20px;
+    font-weight: 600;
+    color: #fff;
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+.checkbox_left {
+    padding: 0 0 6px 0;
+    color: #111;
+    font-size: 16px;
+}
+header.main_header {
+    background: #151515;
+}
+nav.mynav .navbar-brand img {
+    max-width: 300px;
+	width: 100%;
+}
+#navbarsExampleDefault ul li a {
+    color: #fff;
+    text-transform: capitalize;
+    padding: 0 0 0 40px;
+    font-size: 15px; text-align: center;
+}
+#navbarsExampleDefault .dropdown-menu {
+	background: #151515;
+	border: 1px solid #00b4ff;
+	min-width: 100%; padding:0;
+}
+#navbarsExampleDefault .dropdown-menu a {
+    padding: 5px 10px;
+	border-radius: 4px;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+	background: #222;
+}
+li.nav-item.dropdown img {
+    max-width: 35px;
+    display: inline-block;
+    margin: -4px 5px 0;
+}
+.navbar-toggler {
+	background: #fff;
+}
+.addcompany_main {
+	padding: 20px 0 40px;
+}
+.form-row > .col, .form-row > [class*="col-"] {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.a_heading {
+	display: block;
+	text-align: center;
+	padding: 0 0 20px 0;
+	font-size: 24px;
+	color: #151515;
+}
+.a_heading::after {
+	content: "";
+	display: block;
+	border-bottom: 2px solid;
+	max-width: 130px;
+	margin: 0 auto;
+	padding: 0 0 8px;
+}
+.btn.btn-submit {
+	background: #151515;
+	color: #fff;
+	padding: 10px 30px;
+}
+.btn.btn-cancel {
+	background: #00b4ff;
+	color: #fff;
+	padding: 10px 30px;
+}
+.main_footer {
+	background: #151515;
+}
+.copyright {
+	text-align: center;
+	color: #fff;
+	margin: 0;
+	padding: 10px 0;
+}
+/*--*/
+.company-list .table {
+	border: 1px solid #ccc;
+	text-align: center;
+}
+.table-responsive .edit {
+	border: 2px solid;
+	padding: 2px 6px;
+	color: #00b4ff;
+}
+input.check-inputc[type="checkbox"] {
+	transform: scale(1.20);
+}
+.navbar-brand img {
+	max-width: 300px;
+	width: 100%;
+}
+header.main_header .navbar-brand {
+	float: left;
+	height: auto;
+	padding: 15px 15px;
+	line-height: normal;
+}
+header.main_header .navbar-nav {
+	float: right;
+	margin: 12px 0 0 0;
+}
+.nav.navbar-nav > li > a > img.avt {
+    max-width: 35px;
+    margin: -8px 5px 0;
+}
+header.main_header .navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+    font-size: 16px;
+    text-align: right;
+}
+.form-row {
+	float: left;
+	width: 100%;
+}
+
+/*---------@media-----------*/
+/*---------@media-----------*/
+/*---------@media-----------*/
+/*---------@media-----------*/
+/*---------@media-----------*/
+
+@media (max-width:1024px){
+.nav-item.dropdown img {
+	margin: 0;
+}
+}
+@media (max-width:767px){
+header.main_header .navbar-header {
+	position: unset;
+	z-index: auto;
+	top: unset;
+	left: unset;
+	background: #151515;
+}
+header.main_header .navbar-inverse .navbar-toggle {
+	border-color: #333;
+	float: right;
+	margin: 1px 10px 0 0;
+	background: #151515;
+	border: 1px solid #fff;
+}
+header.main_header .navbar-inverse .navbar-nav > li > a {
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+	padding: 10px;
+	border: 1px solid;
+	margin: 0 0 6px 0;
+}
+header.main_header .navbar-brand img {
+	max-width: 150px;
+	width: 100%;
+}
+#navbarsExampleDefault ul li a {
+	padding: 8px 0;
+	border: 1px solid #fff;
+	margin: 4px 0;
+}
+#navbarsExampleDefault .dropdown-menu {
+	border: transparent;
+	min-width: auto;
+	max-width: 200px;
+	margin: 0 auto;
+}
+#navbarsExampleDefault .dropdown-menu a {
+	background: #00b4ff;
+}
+}
+@media (max-width:480px){
+ nav.mynav .navbar-brand img {
+    max-width: 180px;
+}
+}

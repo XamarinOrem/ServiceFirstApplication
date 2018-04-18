@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Project List";
+    Layout = "~/Views/Shared/_LayoutCManager.cshtml";
+}
+
+<div class="main_content">
+    <div class="side-body cstm-side-body">
+        <h2>Project List</h2>
+        <div class="side-body-after">
+            <div class="table-responsive">
+                <table id="jqGridProjects"></table>
+                <div id="jqControlsProjects"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure you want to Change?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" id="btnNo">Cancel</button>
+                    <a href="#" id="btnYes" class="btn btn-danger">Confirm</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+    <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+    @*<script src="~/Scripts/script.js"></script>*@
+    <script>
+        $(function () {
+            $("#jqGridProjects").jqGrid({
+                url: "/CManager/GetProjectsList",
+                datatype: 'json',
+                mtype: 'Get',
+                colNames: ['', 'Name', 'Due Date', 'Customer', 'Owner', 'Edit', 'Change Status', 'Active'],
+                colModel: [
+                    { name: 'ServiceFirstProjectID', align: "center", hidden: true },
+                    { name: 'ServiceFirstProjectName', align: "center", width: 80, },
+                    {
+                        name: 'ServiceFirstProjectDueDate', align: "center", width: 80,
+                        formatter: 'date', formatoptions: { srcformat: 'd/m/Y', newformat: 'd/m/Y' }
+                    },
+                    { name: 'ServiceFirstProjectCustomer', align: "center", width: 80, },
+                    { name: 'ServiceFirstProjectOwner', align: "center", width: 80, },
+                    {
+                        name: "ServiceFirstProjectID", align: "center", width: 80,
+                        formatter: function (cellvalue, options, rowobject) {
+                            return '<button type="button" onclick="editTicketStatus.call(this, event);" style="background-color: transparent; border: 2px solid; padding: 2px 6px; color: #00b4ff;">Edit</button>';
+                        }
+                    },
+                      {
+                          name: "ServiceFirstProjectID", align: "center", formatter: buttonFormat, width: 80,
+                      },
+                     {
+                         name: "ServiceFirstProjectIsActive", width: 70, align: "center",hidden:true,
+                         formatter: "checkbox", formatoptions: { disabled: true },
+                         edittype: "checkbox", editoptions: { value: "Yes:No", defaultValue: "Yes" },
+                         stype: "select", searchoptions: {
+                             sopt: ["eq", "ne"],
+                             value: ":Any;true:Yes;false:No"
+                         }
+                     }],
+
+                pager: jQuery('#jqControlsProjects'),
+                rowNum: 10,
+                rowList: [10, 20, 30, 40, 50],
+                height: '100%',
+                viewrecords: true,
+                emptyrecords: 'No Projects Records are Available to Display',
+                jsonReader: {
+                    root: "rows",
+                    page: "page",
+                    total: "total",
+                    records: "records",
+                    repeatitems: false,
+                    Id: "0"
+                },
+                autowidth: true,
+                multiselect: false
+            })
+        });
+
+
+        function editTicketStatus(e) {
+            var rowid = $(this).closest("tr.jqgrow").attr("id"),
+               $grid = $(this).closest(".ui-jqgrid-btable"),
+               Id = $grid.jqGrid("getCell", rowid, "ServiceFirstProjectID");
+            e.stopPropagation();
+            window.location.href = 'AddProjects/' + Id;
+        }
+
+        function buttonFormat(cellvalue, options, rowObject) {
+            if (!rowObject.ServiceFirstProjectIsActive) {
+                return '<button type="button" id="' + cellvalue + "," + "Active" + '" style="display:inline-block;" onclick="openModal.call(this,id);">Active</button>';
+            }
+            else {
+                return '<button type="button" id="' + cellvalue + "," + "InActive" + '" style="display:inline-block;" onclick="openModal.call(this,id);">InActive</button>';
+            }
+        }
+
+        function openModal(e) {
+            var id = e;
+            $('#myModal').data('id', id);
+            $('#myModal').css('display', 'block');
+        };
+
+        $('#btnYes').click(function () {
+            var Id = $('#myModal').data('id').split(',');
+            $('#myModal').css('display', 'none');
+            window.location.href = 'ActiveProjects/' + Id[0];
+        });
+
+        $('#btnNo').click(function () {
+            $('#myModal').css('display', 'none');
+        });
+
+    </script>
+
+
+}

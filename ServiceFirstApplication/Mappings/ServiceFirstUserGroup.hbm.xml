@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="ServiceFirstApplication" namespace="ServiceFirstApplication.Models">
+  <class name="ServiceFirstUserGroup" table="ServiceFirstUserGroup" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ServiceFirstGroupID" column="ServiceFirstGroupID" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ServiceFirstCompanyID"  />
+    <property name="ServiceFirstGroupName" />
+    <property name="ServiceFirstGroupCreatedDate" />
+    <property name="ServiceFirstGroupIsActive" />
+  </class>
+</hibernate-mapping>

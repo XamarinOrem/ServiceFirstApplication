@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="ServiceFirstApplication" namespace="ServiceFirstApplication.Models">
+  <class name="ServiceFirstProjectCategories" table="ServiceFirstProjectCategories" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ServiceFirstProjectCategoryId" column="ServiceFirstProjectCategoryId" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ServiceFirstCompanyID"  />
+    <property name="ServiceFirstProjectCategoryName" />
+    <property name="ServiceFirstProjectCategoryCreatedDate" />
+    <property name="ServiceFirstProjectCategoryIsActive" />
+  </class>
+</hibernate-mapping>

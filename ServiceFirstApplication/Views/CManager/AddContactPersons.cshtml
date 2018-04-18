@@ -1,0 +1,162 @@
+﻿@model ServiceFirstApplication.Models.ServiceFirst_Login
+
+@{
+    ViewBag.Title = "AddContactPersons";
+    Layout = "~/Views/Shared/_LayoutCManager.cshtml";
+}
+
+<div class="side-body cstm-side-body">
+    <div class="side-body-after">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-add-company">
+                    <h3 class="a_heading">@ViewBag.TitleText </h3>
+
+                    @using (Html.BeginForm())
+                    {
+                        if (ViewBag.Message != null)
+                        {
+                            <div class="alert alert-success">
+                                <strong>@ViewBag.Message</strong>
+                            </div>
+                        }
+
+                        <input type="hidden" value="@ViewBag.UserId" name="ServiceFirstID" id="ServiceFirstID" />
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Username</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstUserName,
+new { @class = "form-control-file" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstUserName, "", new { @class = "text-danger" })
+
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Password</label>
+                                @if (Model != null)
+                                {
+                                    if (Model.ServiceFirstPassword != null)
+                                    {
+                                        @Html.PasswordFor(x => x.ServiceFirstPassword,
+new { @class = "form-control-file", @value = Model.ServiceFirstPassword })
+                                    }
+                                }
+                                else
+                                {
+
+                                    @Html.PasswordFor(x => x.ServiceFirstPassword,
+new { @class = "form-control-file" })
+                                }
+
+                                @Html.ValidationMessageFor(x => x.ServiceFirstPassword, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Confirm Password</label>
+                                @if (Model != null)
+                                {
+                                    if (Model.ServiceFirstPassword != null)
+                                    {
+                                        @Html.PasswordFor(x => x.ServiceFirstUserConfirmPassword,
+new { @class = "form-control-file", @value = Model.ServiceFirstPassword })
+                                    }
+                                }
+                                else
+                                {
+
+                                    @Html.PasswordFor(x => x.ServiceFirstUserConfirmPassword,
+new { @class = "form-control-file" })
+                                }
+                                @Html.ValidationMessageFor(x => x.ServiceFirstUserConfirmPassword, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">First Name</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstUserFirstName,
+new { @class = "form-control-file" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstUserFirstName, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Last Name</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstUserLastName,
+new { @class = "form-control-file" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstUserLastName, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="exampleInputFile">Contact No.</label>
+                                    @Html.TextBoxFor(x => x.ServiceFirstUserContactNumber,
+new { @class = "form-control-file" })
+                                    @Html.ValidationMessageFor(x => x.ServiceFirstUserContactNumber, "", new { @class = "text-danger" })
+
+                                </div>
+
+                            </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Contact Title</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstUserContactTitle,
+new { @class = "form-control-file" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstUserContactTitle, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Contact Email</label>
+                                @Html.TextBoxFor(x => x.ServiceFirstUserContactEmail,
+new { @class = "form-control-file" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstUserContactEmail, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Add Picture</label>
+                                <input type="file" class="form-control-file" id="file" name="file">
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Choose Customers</label>
+                                @Html.DropDownListFor(x => x.ServiceFirstCompanyCustomersID, ViewBag.CustomersData as SelectList, "Select Customer", new { @class = "form-control-file", id = "ServiceFirstCustomerID" })
+                                @Html.ValidationMessageFor(x => x.ServiceFirstCompanyCustomersID, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        
+                        <div class="can_sub">
+                            <button type="button" class="btn btn-primary" id="btnCancel">Cancel</button>
+                            <button type="submit" class="btn btn-primary sub">Submit</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnCancel').click(function () {
+                window.location.href = '@Url.Action("ContactPersonsList")';
+            });
+        });
+    </script>
+}

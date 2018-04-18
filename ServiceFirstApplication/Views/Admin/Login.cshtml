@@ -1,0 +1,82 @@
+﻿@using ServiceFirstApplication.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Admin Login";
+    Layout = null;
+}
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="img/fav.png">
+        <title>ServiceFirst | Login</title>
+        <!-- Bootstrap core CSS -->
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="~/Content/style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+        <script src="https://use.fontawesome.com/f6794b8987.js"></script>
+    </head>
+
+    <body class="adminlogin_bg">
+        <section class="login_main">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="form-signin1">
+                            <img class="loginlogo img-responsive" src="img/logo.png">
+
+                            @*<form class="form-signin">*@
+@using (Html.BeginForm("Login", "Admin", FormMethod.Post,
+                     new { @class = "form-signin" }))
+{
+    @Html.TextBoxFor(x => x.UserName, new { @placeholder = "UserName", @class = "form-control", @required = "" , @autofocus = "" })
+ 
+    if (ViewBag.pwd == null)
+                {
+      @Html.PasswordFor(x => x.Password, new { @placeholder = "Password", @class = "form-control", @required = "" })
+    }
+    else
+    {
+        @Html.PasswordFor(x => x.Password, new { @placeholder = "Password", @class = "form-control", @required = "", value = Model.Password })
+
+    }
+       
+                               
+                                <div class="checkbox_left">
+                                    <div class="checkbox">
+                                        @Html.CheckBoxFor(u => u.RememberMe @*,new { @class = "form-control" }*@)
+                                        @Html.LabelFor(u => u.RememberMe @*, new { @class = "form-control" }*@)
+                                      
+
+                                        @*<label>
+                                            <input type="checkbox" value="remember-me"> Remember me
+                                        </label>*@
+                                    </div>
+                                </div>
+                                <button class="btn login" type="submit">Log in</button>
+                               <br/>
+                           
+}
+                            @*</form>*@
+                            <label style="color:red;">@TempData["message"]</label>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+
+        </section><!-- /.tpf -->
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+    </body>
+</html>
+
+

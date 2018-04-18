@@ -1,0 +1,71 @@
+﻿@model ServiceFirstApplication.Models.ServiceFirstProjects
+
+@{
+    ViewBag.Title = "Add Projects";
+    Layout = "~/Views/Shared/_LayoutCManager.cshtml";
+}
+
+<div class="side-body cstm-side-body">
+    <h2> @ViewBag.TitleText </h2>
+
+    @using (Html.BeginForm("AddProjects", "CManager", FormMethod.Post))
+    {
+        if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success">
+                <strong>@ViewBag.Message</strong>
+            </div>
+        }
+
+        <input type="hidden" value="@ViewBag.ProjectID" name="ServiceFirstProjectID" id="ServiceFirstProjectID" />
+
+        <div class="form-group">
+            <label for="exampleInputFile">Name</label>
+            @Html.TextBoxFor(x => x.ServiceFirstProjectName,
+new { @class = "form-control-file" })
+            @Html.ValidationMessageFor(x => x.ServiceFirstProjectName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputFile">Due Date</label>
+                @Html.TextBoxFor(x => x.ServiceFirstProjectDueDate,
+new { @class = "form-control-file date-picker" })
+                @Html.ValidationMessageFor(x => x.ServiceFirstProjectDueDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputFile">Customer</label>
+                    @Html.DropDownListFor(x => x.ServiceFirstProjectCustomer, ViewBag.Customers as SelectList, "Select Customer", new { @class = "form-control-file", id = "ServiceFirstCustomerID" })
+                    @Html.ValidationMessageFor(x => x.ServiceFirstProjectCustomer, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputFile">Owner</label>
+                        @Html.DropDownListFor(x => x.ServiceFirstProjectOwner, ViewBag.Owners as SelectList, "Select Owner", new { @class = "form-control-file", id = "ServiceFirstUserID" })
+                        @Html.ValidationMessageFor(x => x.ServiceFirstProjectOwner, "", new { @class = "text-danger" })
+
+                        <div class="can_sub">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+    }
+    </div>
+
+    @section scripts{
+        <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.date-picker').datepicker({
+                    dateFormat: "dd/M/yy",
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-60:+0"
+                });              
+            });
+            $('#ServiceFirstProjectDueDate').value($('#ServiceFirstProjectDueDate').value.ToString("dd/MM/yyyy"));
+        </script>
+    }

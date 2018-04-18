@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="ServiceFirstApplication" namespace="ServiceFirstApplication.Models">
+  <class name="ServiceFirstTicketResolution" table="ServiceFirstTicketResolution" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ServiceFirstTicketResolutionID" column="ServiceFirstTicketResolutionID" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ServiceFirstCompanyID" />
+    <property name="ServiceFirstTicketResolutionIcon" />
+    <property name="ServicFirstTicketResolutionIndex" />
+    <property name="ServiceFirstTicketResolutionName" />
+    <property name="ServiceFirstTicketResolutionDateCreated" />
+    <property name="ServiceFirstTicketResolutionIsActive" />
+  </class>
+</hibernate-mapping>

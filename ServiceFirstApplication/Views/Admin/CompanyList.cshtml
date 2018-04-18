@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Project Categories List";
+}
+
+<br /><br />
+<h3 class="a_heading">Company List</h3>
+
+<div>
+    <table id="jqGrid"></table>
+    <div id="jqControls"></div>
+</div>
+
+
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure you want to Change?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                    <a href="#" id="btnYes" class="btn btn-danger">Confirm</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+    <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+    @*<script src="~/Scripts/script.js"></script>*@
+    <script>
+        $(function () {
+            $("#jqGrid").jqGrid({
+                url: "/Admin/GetCompanies",
+                datatype: 'json',
+                mtype: 'Get',
+                colNames: ['#', 'Logo Picture', 'Name', 'Contact Email', 'Address', 'No. of Projects', 'No. of Tickets', 'No. of Clients', 'Manager Id', 'Manager Name', 'Edit', 'Change Status', 'Active'],
+                colModel: [
+                    { name: 'ServiceFirstCompanyID', align: "center", hidden: true },
+                    {
+                        name: "ServiceFirstCompanyLogoFile", align: "center", hidden: true,
+                        formatter: function (cellvalue, options, rowobject) {
+                            if (cellvalue != null) {
+                                return "<img src='" + "/Images/" + cellvalue + "' style='width:60px; height:60px;border-radius:50%'>";
+                            }
+                            else {
+                                return "<label/>";
+                            }
+                        }
+                    },
+                    { name: 'ServiceFirstCompanyName', align: "center" },
+                    { name: 'ServiceFirstCompanyContactEmail', align: "center" },
+                    { name: 'ServiceFirstCompanyAddress', align: "center" },
+                   { name: 'ServiceFirstCompanyNoOfProjects', align: "center" },
+                  { name: 'ServiceFirstCompanyNoOfTickets', align: "center" },
+                  { name: 'ServiceFirstCompanyNoOfCustomers', align: "center" },
+                  { name: 'ServiceFirstCompanyManagerId', hidden: true },
+                  { name: 'ServiceFirstCompanyManagerName', align: "center", formatter: buttonFormatManager, width: 250 },
+                    {
+                        name: "ServiceFirstCompanyID", align: "center",
+                        formatter: function (cellvalue, options, rowobject) {
+                            return '<button type="button" onclick="editCompany.call(this, event);" style="background-color: transparent; border: 2px solid; padding: 2px 6px; color: #00b4ff;">Edit</button>';
+                        }
+                    },
+                    {
+                        name: "ServiceFirstCompanyID", align: "center", formatter: buttonFormat,
+                    },
+                    {
+                        name: "ServiceFirstCompanyIsActive", width: 70, align: "center",
+                        formatter: "checkbox", formatoptions: { disabled: true },
+                        edittype: "checkbox", editoptions: { value: "Yes:No", defaultValue: "Yes" },
+                        stype: "select", searchoptions: {
+                            sopt: ["eq", "ne"],
+                            value: ":Any;true:Yes;false:No"
+                        },
+
+                    }],
+
+                pager: jQuery('#jqControls'),
+                rowNum: 10,
+                rowList: [10, 20, 30, 40, 50],
+                height: '100%',
+                viewrecords: true,
+                emptyrecords: 'No Company Records are Available to Display',
+                jsonReader: {
+                    root: "rows",
+                    page: "page",
+                    total: "total",
+                    records: "records",
+                    repeatitems: false,
+                    Id: "0"
+                },
+                autowidth: true,
+                multiselect: false
+            })
+        });
+
+        function editCompany(e) {
+            var rowid = $(this).closest("tr.jqgrow").attr("id"),
+               $grid = $(this).closest(".ui-jqgrid-btable"),
+               Id = $grid.jqGrid("getCell", rowid, "ServiceFirstCompanyID");
+            e.stopPropagation();
+            window.location.href = 'AddCompany/' + Id;
+        };
+
+        function openModal(e) {
+            var id = e;
+            $('#myModal').data('id', id).modal('show');
+        };
+
+        $('#btnYes').click(function () {
+            var Id = $('#myModal').data('id').split(',');
+            $('#myModal').modal('hide');
+            if (Id[1] == "Active") {
+                window.location.href = 'ActiveCompany/' + Id[0];
+            }
+            else if (Id[1] == "InActive") {
+                window.location.href = 'InActiveCompany/' + Id[0];
+            }
+        });
+
+        function buttonFormat(cellvalue, options, rowObject) {
+            if (!rowObject.ServiceFirstCompanyIsActive) {
+                return '<button type="button" id="' + cellvalue + "," + "Active" + '" style="display:inline-block;" onclick="openModal.call(this,id);">Active</button>';
+            }
+            else {
+
+                return '<button type="button" id="' + cellvalue + "," + "InActive" + '" style="display:inline-block;" onclick="openModal.call(this,id);">InActive</button>';
+            }
+        }
+
+        function buttonFormatManager(cellvalue, options, rowObject) {
+            if (cellvalue === undefined || cellvalue === 'NULL' || cellvalue === "") {
+                cellvalue = '';
+                return cellvalue;
+            }
+
+            else if (rowObject.ServiceFirstCompanyManagerId != 0) {
+                return '<a href="AddCompanyManager/' + rowObject.ServiceFirstCompanyManagerId + '">' + cellvalue + '</a>';
+            }
+        }
+
+    </script>
+}

@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/img/fav.png">
+    <title>ServiceFirst</title>
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/style.css" type="text/css" rel="stylesheet">
+    <link href="~/Content/style1.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <style>
+        .text-danger {
+            color: red !important;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="edit_logo_outer">
+        <div class="top-header">
+            <div class="row edit_logo_header">
+                <div class="col-xs-12 col-sm-3 col-md-3 logo_sec">
+                    <a href="@Url.Action("Dashboard")"><img src="@Session["LogoPath"]"></a>
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-9 admin_sec">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="pass"><a href="@Url.Action("ChangePassword")"><img src="~/img/pass.png" />Change Password</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="~/img/account.png" />@Session["AdminName"]<span class="arrow-img"><img src="~/img/arrow-img.png"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Logout")"><img src="~/img/signout.png" />Sign Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_height"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="side-menu cst-side-menu edits">
+                    <nav class="navbar" role="navigation">
+                        <div class="navbar-header">
+                            <div class="brand-wrapper">
+                                <button type="button" class="navbar-toggle">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="side-menu-container">
+                            <ul class="nav navbar-nav cst-navbar-nav">
+                                <li class="panel panel-default no-bg" id="dropdown">
+                                    <a class="active" href="@Url.Action("EditLogo")">Edit Logo</a>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl1">
+                                        Project Categories
+                                    </a>
+                                    <div id="dropdown-lvl1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddProjectCategory",new { id=0})">Add Project Categories</a></li>
+                                                <li><a href="@Url.Action("ListProjectCategories")">List Project Categories</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl2">
+                                        Ticket Type
+                                    </a>
+                                    <div id="dropdown-lvl2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddTicketType",new { id=0})">Add Ticket Types</a></li>
+                                                <li><a href="@Url.Action("ListTicketType")">List Ticket Types</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl3">
+                                        Ticket Priority Level
+                                    </a>
+                                    <div id="dropdown-lvl3" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddTicketPriority",new { id=0})">Add Ticket Priority</a></li>
+                                                <li><a href="@Url.Action("ListTicketPriority")">List Ticket Priority</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl4">
+                                        Ticket Status
+                                    </a>
+                                    <div id="dropdown-lvl4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddTicketStatus",new { id=0})">Add Ticket Status</a></li>
+                                                <li><a href="@Url.Action("TicketStatusList")">List Ticket Status</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl5">
+                                        Ticket Resolution
+                                    </a>
+                                    <div id="dropdown-lvl5" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddTicketResolution",new { id=0})">Add Ticket resolution</a></li>
+                                                <li><a href="@Url.Action("TicketResolutionList")">List Ticket resolution</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl6">
+                                        User Group
+                                    </a>
+                                    <div id="dropdown-lvl6" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddUserGroup",new { id=0})">Add User Group</a></li>
+                                                <li><a href="@Url.Action("UserGroupList")">List User Group</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl7">
+                                        Users
+                                    </a>
+                                    <div id="dropdown-lvl7" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddUser",new { id=0})">Add User</a></li>
+                                                <li><a href="@Url.Action("ListUsers")">Users List</a></li>
+                                                <li><a href="@Url.Action("DownloadUsers")">Download Users</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl8">
+                                        Customers
+                                    </a>
+                                    <div id="dropdown-lvl8" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddCustomers",new { id=0})">Add Customer</a></li>
+                                                <li><a href="@Url.Action("CustomersList")">Customers List</a></li>
+                                                <li><a href="@Url.Action("UploadCustomerCSV")">Upload Customers CSV</a></li>
+                                                <li><a href="@Url.Action("DownloadCustomers")">Download Customers</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl9">
+                                        Contact Persons
+                                    </a>
+                                    <div id="dropdown-lvl9" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddContactPersons", new { id=0})">Add Contact Person</a></li>
+                                                <li><a href="@Url.Action("ContactPersonsList")">Contact Persons  List</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default no-bg" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl10">
+                                        Assign Contact Persons to Customer
+                                    </a>
+
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl11">
+                                        Projects
+                                    </a>
+                                    <div id="dropdown-lvl11" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddProjects",new { id=0})">Add Project</a></li>
+                                                <li><a href="@Url.Action("ProjectsList")">Project List</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl12">
+                                        Tickets
+                                    </a>
+                                    <div id="dropdown-lvl12" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="@Url.Action("AddTicket",new { id=0})">Add Ticket</a></li>
+                                                <li><a href="@Url.Action("ListTicket")">Ticket List</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- Main Content -->
+                <div class="main_content">
+                    @RenderBody()
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/bootstrap")
+                    @RenderSection("scripts", required: false)
+                </div>
+            </div>
+        </div>
+        <p class="footer-copyright">© 2017 Copyright - ServiceFirst</p>
+    </section>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script>
+        $(function () {
+            $('.navbar-toggle').click(function () {
+                $('.navbar-nav').toggleClass('slide-in');
+                $('.side-body').toggleClass('body-slide-in');
+                $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+                /// uncomment code for absolute positioning tweek see top comment in css
+                //$('.absolute-wrapper').toggleClass('slide-in');
+
+            });
+
+            // Remove menu for searching
+            $('#search-trigger').click(function () {
+                $('.navbar-nav').removeClass('slide-in');
+                $('.side-body').removeClass('body-slide-in');
+
+                /// uncomment code for absolute positioning tweek see top comment in css
+                //$('.absolute-wrapper').removeClass('slide-in');
+
+            });
+        });
+    </script>
+</body>
+</html>

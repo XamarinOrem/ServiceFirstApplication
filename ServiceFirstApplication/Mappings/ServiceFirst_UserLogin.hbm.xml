@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="ServiceFirstApplication" namespace="ServiceFirstApplication.Models">
+  <class name="ServiceFirst_UserLogin" table="ServiceFirst_UserLogin" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ServiceFirstUserID" column="ServiceFirstUserID" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ServiceFirstCompanyID"  />
+    <property name="ServiceFirstUserName" />
+    <property name="ServiceFirstUserPassword" />
+    <property name="ServiceFirstUserResetCode" />
+    <property name="ServiceFirstUserResectCoderExpiration" />
+    <property name="ServiceFirstUserPassworSalt" />
+    <property name="ServiceFirstUserFirstName" />
+    <property name="ServiceFirstUserLastName" />
+    <property name="ServiceFirstUserPicture" />
+    <property name="ServiceFirstUserContactNumber" />
+    <property name="ServiceFirstUserContactEmail" />
+    <property name="ServiceFirstUserContactTitle" />
+    <property name="ServiceFirstUserIsActive" />
+    <property name="ServiceFirstUserCreatedDate" />
+    <property name="ServiceFirstUserGroupID"/>
+  </class>
+</hibernate-mapping>

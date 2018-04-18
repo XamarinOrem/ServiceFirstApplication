@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "List Tickets";
+    Layout = "~/Views/Shared/_LayoutCManager.cshtml";
+}
+
+<div class="main_content">
+    <div class="side-body cstm-side-body">
+        <h2> Ticket List</h2>
+        <div class="side-body-after">
+            <div class="table-responsive">
+                <table id="jqGrid" class="table"></table>
+                <div id="jqControls"></div>
+            </div>
+        </div>
+    </div>
+  
+</div>
+@section scripts{
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+    <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+    @*<script src="~/Scripts/script.js"></script>*@
+    <script>
+        $(function () {
+            $("#jqGrid").jqGrid({
+                url: "/CManager/GetTicketList",
+                datatype: 'json',
+                mtype: 'Get',
+                colNames: ['#', 'Name', 'Description', 'Customer','Project','Edit'],
+                colModel: [
+                    { name: 'ServiceFirstTicketID', align: "center", hidden: true },
+                     
+                    { name: 'SeviceFirstTicketName', align: "center" },
+                    { name: 'ServiceFirstTicketDescription', align: "center" },
+                      { name: 'Customer', align: "center" },
+                       { name: 'Project', align: "center" },
+                    {
+                        name: "ServiceFirstTicketID", align: "center",
+                        formatter: function (cellvalue, options, rowobject) {
+                            return '<button type="button" onclick="editCompany.call(this, event);" style="background-color: transparent; border: 2px solid; padding: 2px 6px; color: #00b4ff;">Edit</button>';
+                        }
+                    },
+                ],
+
+                pager: jQuery('#jqControls'),
+                rowNum: 10,
+                rowList: [10, 20, 30, 40, 50],
+                height: '100%',
+                viewrecords: true,
+                emptyrecords: 'No Records are Available to Display',
+                jsonReader: {
+                    root: "rows",
+                    page: "page",
+                    total: "total",
+                    records: "records",
+                    repeatitems: false,
+                    Id: "0"
+                },
+                autowidth: true,
+                multiselect: false
+            })
+        });
+
+        function editCompany(e) {
+            var rowid = $(this).closest("tr.jqgrow").attr("id"),
+               $grid = $(this).closest(".ui-jqgrid-btable"),
+               Id = $grid.jqGrid("getCell", rowid, "ServiceFirstTicketID");
+            e.stopPropagation();
+            window.location.href = 'AddTicket/' + Id;
+        };
+
+        function openModal(e) {
+            var id = e;
+            $('#myModal').data('id', id);
+            $('#myModal').css('display', 'block');
+        };
+
+      
+        
+
+
+
+    </script>
+}
+
+

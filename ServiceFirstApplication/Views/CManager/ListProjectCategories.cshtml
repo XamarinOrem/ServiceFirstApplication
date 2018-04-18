@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "ListProjectCategories";
+    Layout = "~/Views/Shared/_LayoutCManager.cshtml";
+}
+
+<div class="main_content">
+    <div class="side-body cstm-side-body">
+        <h2>List Project Categories</h2>
+        <div class="side-body-after">
+            <div class="table-responsive">
+                <table id="jqGrid" class="table"></table>
+                <div id="jqControls"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure you want to Change?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info"id="btnNo">Cancel</button>
+                    <a href="#" id="btnYes" class="btn btn-danger">Confirm</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+    <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+    @*<script src="~/Scripts/script.js"></script>*@
+    <script>
+        $(function () {
+            $("#jqGrid").jqGrid({
+                url: "/CManager/GetProjectCategories",
+                datatype: 'json',
+                mtype: 'Get',
+                colNames: ['#', 'Name', 'Edit', 'Change Status'],
+                colModel: [
+                    { name: 'ServiceFirstProjectCategoryId', align: "center", hidden: true },
+                    { name: 'ServiceFirstProjectCategoryName', align: "center" },
+                    {
+                        name: "ServiceFirstProjectCategoryId", align: "center",
+                        formatter: function (cellvalue, options, rowobject) {
+                            return '<button type="button" onclick="editCompany.call(this, event);" style="background-color: transparent; border: 2px solid; padding: 2px 6px; color: #00b4ff;">Edit</button>';
+                        }
+                    },
+                      {
+                          name: "ServiceFirstProjectCategoryId", align: "center", formatter: buttonFormat,
+                      },
+                    //{
+                    //    name: "ServiceFirstCompanyIsActive", width: 70, align: "center",
+                    //    formatter: "checkbox", formatoptions: { disabled: true },
+                    //    edittype: "checkbox", editoptions: { value: "Yes:No", defaultValue: "Yes" },
+                    //    stype: "select", searchoptions: {
+                    //        sopt: ["eq", "ne"],
+                    //        value: ":Any;true:Yes;false:No"
+                    //    },
+
+                    //}
+                ],
+
+                pager: jQuery('#jqControls'),
+                rowNum: 10,
+                rowList: [10, 20, 30, 40, 50],
+                height: '100%',
+                viewrecords: true,
+                emptyrecords: 'No Records are Available to Display',
+                jsonReader: {
+                    root: "rows",
+                    page: "page",
+                    total: "total",
+                    records: "records",
+                    repeatitems: false,
+                    Id: "0"
+                },
+                autowidth: true,
+                multiselect: false
+            })
+        });
+
+        function editCompany(e) {
+            var rowid = $(this).closest("tr.jqgrow").attr("id"),
+               $grid = $(this).closest(".ui-jqgrid-btable"),
+               Id = $grid.jqGrid("getCell", rowid, "ServiceFirstProjectCategoryId");
+            e.stopPropagation();
+            window.location.href = 'AddProjectCategory/' + Id;
+        };
+
+        function openModal(e) {
+            var id = e;
+            $('#myModal').data('id', id);
+            $('#myModal').css('display', 'block');
+        };
+
+        $('#btnYes').click(function () {
+            var Id = $('#myModal').data('id').split(',');
+            $('#myModal').css('display', 'none');
+            window.location.href = 'ActiveInActiveProjectCat/' + Id[0];
+
+        });
+
+        $('#btnNo').click(function () {
+            $('#myModal').css('display', 'none');
+        });
+
+        function buttonFormat(cellvalue, options, rowObject) {
+            if (!rowObject.ServiceFirstProjectCategoryIsActive) {
+                return '<button type="button" id="' + cellvalue + "," + "Active" + '" style="display:inline-block;" onclick="openModal.call(this,id);">Active</button>';
+            }
+            else {
+
+                return '<button type="button" id="' + cellvalue + "," + "InActive" + '" style="display:inline-block;" onclick="openModal.call(this,id);">InActive</button>';
+            }
+        }
+
+
+
+    </script>
+}
+
+

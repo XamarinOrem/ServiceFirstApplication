@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="ServiceFirstApplication" namespace="ServiceFirstApplication.Models">
+  <class name="ServiceFirstProjects" table="ServiceFirstProjects" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ServiceFirstProjectID" column="ServiceFirstProjectID" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ServiceFirstCompanyID"  />
+    <property name="ServiceFirstProjectDueDate" />
+    <property name="ServiceFirstProjectCreatedDate" />
+    <property name="ServiceFirstProjectCustomer" />
+    <property name="ServiceFirstProjectOwner" />
+    <property name="ServiceFirstProjectName" />
+    <property name="ServiceFirstProjectIsActive" />
+  </class>
+</hibernate-mapping>
